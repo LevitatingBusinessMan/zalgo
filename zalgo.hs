@@ -4,7 +4,7 @@
 import System.IO
 import Data.Char
 import System.Random
-import Data.Int
+import Control.Monad
 
 zalgoChar :: RandomGen g => Char -> g -> (String,g)
 zalgoChar c g = ([c,z],ng)
@@ -20,4 +20,5 @@ main = do
     g <- newStdGen
     c <- getChar
     putStr $ fst (zalgoChar c g)
-    main
+    eof <- isEOF
+    unless eof main
